@@ -1,0 +1,6 @@
+<input type="number" [(ngModel)]="nb">
+
+<p [ngClass]="{
+    'text-primary': isOdd,
+    'text-secondary': isEven
+   }" *appRepeat="nb; maxVal:5; let isOdd = isOdd; let isEven = isEven">test-structurel-directive works!</p>

@@ -1,0 +1,14 @@
+<p>products list</p>
+
+<input (change)="update()" type="number" [(ngModel)]="nbProduct" class="form-control">
+<ol>
+  <li *ngFor="let product of getProducts$ | async; trackBy:trackBy">
+    {{product | json}}
+  </li>
+</ol>
+
+<!-- <ol>
+  <li *ngFor="let product of products; trackBy:trackBy">
+    {{product | json}}
+  </li>
+</ol> -->

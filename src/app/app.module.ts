@@ -44,6 +44,8 @@ import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
 import { EmbaucheComponent } from './cv/embauche/embauche.component';
 import { CvCardComponent } from './cv/cv-card/cv-card.component';
 import { RepeatDirective } from './directives/repeat.directive';
+import { TestStructurelDirectiveComponent } from './directives/test-structurel-directive/test-structurel-directive.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { RepeatDirective } from './directives/repeat.directive';
     TestObservableComponent,
     TestHttpComponent,
     RepeatDirective,
+    TestStructurelDirectiveComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
