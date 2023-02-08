@@ -46,6 +46,8 @@ import { CvCardComponent } from './cv/cv-card/cv-card.component';
 import { RepeatDirective } from './directives/repeat.directive';
 import { TestStructurelDirectiveComponent } from './directives/test-structurel-directive/test-structurel-directive.component';
 import { ProductsComponent } from './products/products.component';
+import { TestPipeImpureComponent } from './test-pipe-impure/test-pipe-impure.component';
+import { CalculFuPipe } from './pipes/calcul-fu.pipe';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,8 @@ import { ProductsComponent } from './products/products.component';
     RepeatDirective,
     TestStructurelDirectiveComponent,
     ProductsComponent,
+    TestPipeImpureComponent,
+    CalculFuPipe,
   ],
   imports: [
     BrowserModule,
