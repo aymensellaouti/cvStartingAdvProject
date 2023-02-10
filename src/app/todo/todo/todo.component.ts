@@ -10,13 +10,14 @@ import { TodoService } from '../service/todo.service';
 })
 export class TodoComponent {
   todos: Todo[] = [];
-  todo = new Todo();
+  todo = this.todoService.createTodo();
   constructor(private todoService: TodoService) {
     this.todos = this.todoService.getTodos();
   }
   addTodo() {
     this.todoService.addTodo(this.todo);
-    this.todo = new Todo();
+    this.todo = this.todoService.createTodo();
+    console.log(this.todos);
   }
 
   deleteTodo(todo: Todo) {

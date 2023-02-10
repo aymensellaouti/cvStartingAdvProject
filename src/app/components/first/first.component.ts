@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-first',
@@ -15,9 +16,13 @@ export class FirstComponent {
   showHide() {
     this.isHidden = !this.isHidden;
   }
-  constructor() {
-    /*     setInterval(() => {
+  constructor(private router: Router, private ActivatedRoute: ActivatedRoute) {
+    console.log(ActivatedRoute.snapshot);
+    console.log(ActivatedRoute.snapshot.paramMap.getAll('id'));
+    console.log(ActivatedRoute.snapshot.queryParams['test']);
+    console.log(ActivatedRoute.snapshot.params['id']);
+    ActivatedRoute.paramMap.subscribe((d) => console.log(d));
 
-    }, 1000); */
+    /*     console.log(this.router.routerState); */
   }
 }

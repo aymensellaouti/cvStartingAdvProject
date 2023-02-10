@@ -48,7 +48,22 @@ import { TestStructurelDirectiveComponent } from './directives/test-structurel-d
 import { ProductsComponent } from './products/products.component';
 import { TestPipeImpureComponent } from './test-pipe-impure/test-pipe-impure.component';
 import { CalculFuPipe } from './pipes/calcul-fu.pipe';
+import { PREMIER_SERVICE_TOKEN } from './injectionTokens/premier-service.token';
+import { premierServiceProviderFactory } from './provider-factories/premier-service.provider-factory';
+import { LoggerService } from './services/logger.service';
+import { PremierServiceService } from './services/premier-service.service';
+import { GLOBAL_CONFIG } from './config/global.config';
+import { CvService } from './cv/services/cv.service';
+import { FakeCvService } from './cv/services/fake-cv.service';
+import { UUID_TOKEN } from './injectionTokens/uuid.token';
 
+import {v4 as uuidv4} from 'uuid';
+import { ResolutionModifiersComponent } from './resolution-modifiers/resolution-modifiers.component';
+import { ContainerComponent } from './container/container.component';
+import { TestHostDirective } from './directives/test-host.directive';
+import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.component';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { NavigationExtrasExampleComponent } from './navigation-extras-example/navigation-extras-example.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +103,11 @@ import { CalculFuPipe } from './pipes/calcul-fu.pipe';
     ProductsComponent,
     TestPipeImpureComponent,
     CalculFuPipe,
+    ResolutionModifiersComponent,
+    ContainerComponent,
+    TestHostDirective,
+    MasterDetailCvComponent,
+    NavigationExtrasExampleComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,8 +116,20 @@ import { CalculFuPipe } from './pipes/calcul-fu.pipe';
     ToastrModule.forRoot(), // ToastrModule added
     AppRoutingModule,
     HttpClientModule,
+    NgxUiLoaderModule
   ],
-  providers: [AuthInterceptorProvider],
+  providers: [
+    AuthInterceptorProvider,
+    PremierServiceService,
+    {
+      provide: CvService,
+      useClass: GLOBAL_CONFIG.env == 'dev' ? FakeCvService : CvService,
+    },
+    {
+      provide: UUID_TOKEN,
+      useValue: uuidv4
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

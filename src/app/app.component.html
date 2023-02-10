@@ -1,6 +1,11 @@
 <app-navbar></app-navbar>
 <hr>
-<app-test-pipe-impure></app-test-pipe-impure>
+<button class="btn btn-danger" (click)="navigateWithNavigationExtras()">Extras</button>
+<app-container>
+  <app-resolution-modifiers></app-resolution-modifiers>
+</app-container>
+<ngx-ui-loader></ngx-ui-loader>
+<!-- <app-test-pipe-impure></app-test-pipe-impure> -->
 <!-- <app-products></app-products>
 <app-test-structurel-directive></app-test-structurel-directive> -->
 <router-outlet></router-outlet>

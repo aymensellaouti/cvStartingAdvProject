@@ -22,7 +22,12 @@ export class DetailsCvComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
+    this.activatedRoute.data.subscribe(({ cv }) => {
+      this.cv = cv;
+    });
+    console.log('data snapshot', this.activatedRoute.snapshot.data);
+
+    /*     this.activatedRoute.params.subscribe((params) => {
       this.cvService.getCvById(params['id']).subscribe({
         next: (cv) => {
           this.cv = cv;
@@ -32,6 +37,7 @@ export class DetailsCvComponent implements OnInit {
         },
       });
     });
+ */
   }
   deleteCv(cv: Cv) {
     this.cvService.deleteCvById(cv.id).subscribe({
