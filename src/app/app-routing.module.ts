@@ -16,6 +16,7 @@ import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.
 import { ListResolver } from './cv/resolvers/list.resolver';
 import { DetailsResolver } from './cv/resolvers/details.resolver';
 import { NavigationExtrasExampleComponent } from './navigation-extras-example/navigation-extras-example.component';
+import { CanLeaveTodoGuard } from './auth/can-leave-todo.guard';
 
 const routes: Route[] = [
   /* cv */
@@ -48,13 +49,17 @@ const routes: Route[] = [
   {
     path: 'cv/:id',
     component: DetailsCvComponent,
-    resolve: { cv: DetailsResolver }
+    resolve: { cv: DetailsResolver },
   },
   {
     path: '',
     component: FrontComponent,
     children: [
-      { path: 'todo', component: TodoComponent },
+      {
+        path: 'todo',
+        component: TodoComponent,
+        canDeactivate: [CanLeaveTodoGuard],
+      },
       { path: 'word', component: MiniWordComponent },
     ],
   },
