@@ -19,8 +19,9 @@ export class LoginComponent {
   login(credentials: CredentialsDto) {
     this.authService.login(credentials).subscribe({
       next: (response) => {
-        localStorage.setItem('token', response.id);
-        this.toastr.success(`Bienvenu chez vous :)`);
+/*
+  localStorage.setItem('token', response.id);
+ */        this.toastr.success(`Bienvenu chez vous :)`);
         this.router.navigate([APP_ROUTES.cv]);
       },
       error: (error) => {
