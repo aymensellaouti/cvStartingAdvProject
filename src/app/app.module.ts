@@ -64,6 +64,9 @@ import { TestHostDirective } from './directives/test-host.directive';
 import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { NavigationExtrasExampleComponent } from './navigation-extras-example/navigation-extras-example.component';
+import { FromComponent } from './RxJsExemples/from/from.component';
+import { OfComponent } from './RxJsExemples/of/of.component';
+import { SliderComponent } from './RxJsExemples/slider/slider.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,6 +111,9 @@ import { NavigationExtrasExampleComponent } from './navigation-extras-example/na
     TestHostDirective,
     MasterDetailCvComponent,
     NavigationExtrasExampleComponent,
+    FromComponent,
+    OfComponent,
+    SliderComponent,
   ],
   imports: [
     BrowserModule,
