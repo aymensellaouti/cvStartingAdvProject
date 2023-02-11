@@ -1,0 +1,6 @@
+<input [(ngModel)]="search" type="text" class="form-control" #searchInpu>
+<ol class="lost-group">
+  <li class="list-group-item" *ngFor="let cv of cvs$ | async">
+    <app-item [cv]="cv"></app-item>
+  </li>
+</ol>

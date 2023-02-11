@@ -67,6 +67,7 @@ import { NavigationExtrasExampleComponent } from './navigation-extras-example/na
 import { FromComponent } from './RxJsExemples/from/from.component';
 import { OfComponent } from './RxJsExemples/of/of.component';
 import { SliderComponent } from './RxJsExemples/slider/slider.component';
+import { AutocompleteComponent } from './RxJsExemples/autocomplete/autocomplete.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +115,7 @@ import { SliderComponent } from './RxJsExemples/slider/slider.component';
     FromComponent,
     OfComponent,
     SliderComponent,
+    AutocompleteComponent,
   ],
   imports: [
     BrowserModule,
