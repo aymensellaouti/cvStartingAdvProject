@@ -3,7 +3,7 @@ import { Cv } from '../model/cv';
 import { LoggerService } from '../../services/logger.service';
 import { ToastrService } from 'ngx-toastr';
 import { CvService } from '../services/cv.service';
-import { EMPTY, Observable, catchError, of } from 'rxjs';
+import { EMPTY, Observable, catchError, of, tap, map, shareReplay } from 'rxjs';
 @Component({
   selector: 'app-cv',
   templateUrl: './cv.component.html',
@@ -11,6 +11,8 @@ import { EMPTY, Observable, catchError, of } from 'rxjs';
 })
 export class CvComponent {
   cvs$: Observable<Cv[]>;
+  junios$: Observable<Cv[]>;
+  seniors$: Observable<Cv[]>;
   nbClickItem = 0;
   /*   selectedCv: Cv | null = null; */
   date = new Date();
@@ -21,14 +23,19 @@ export class CvComponent {
     private cvService: CvService
   ) {
     this.cvs$ = this.cvService.getCvs().pipe(
-      catchError(
-        (e) => {
-          this.toastr.error(`
+      catchError((e) => {
+        this.toastr.error(`
           Attention!! Les données sont fictives, problème avec le serveur.
-          Veuillez contacter l'admin.`)
-          return of(this.cvService.getFakeCvs());
-        }
-      )
+          Veuillez contacter l'admin.`);
+        return of(this.cvService.getFakeCvs());
+      }),
+      shareReplay()
+    );
+    this.junios$ = this.cvs$.pipe(
+      map((cvs) => cvs.filter((cv) => cv.age < 40))
+    );
+    this.seniors$ = this.cvs$.pipe(
+      map((cvs) => cvs.filter((cv) => cv.age >= 40))
     );
     /* this.cvService.getCvs().subscribe(
       {
