@@ -55,6 +55,7 @@ import { OfComponent } from './RxJsExemples/of/of.component';
 import { SliderComponent } from './RxJsExemples/slider/slider.component';
 import { CdComponent } from './changeDetection/cd/cd.component';
 import { OutOfBoundCDdExampleComponent } from './changeDetection/out-of-bound-cdd-example/out-of-bound-cdd-example.component';
+import { CounterComponent } from './testComponent/counter/counter.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,6 +96,7 @@ import { OutOfBoundCDdExampleComponent } from './changeDetection/out-of-bound-cd
     SliderComponent,
     CdComponent,
     OutOfBoundCDdExampleComponent,
+    CounterComponent,
   ],
   imports: [
     BrowserModule,
