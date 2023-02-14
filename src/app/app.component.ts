@@ -1,4 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import {
+  ApplicationRef,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+} from '@angular/core';
 import { PREMIER_SERVICE_TOKEN } from './injectionTokens/premier-service.token';
 import { PremierServiceService } from './services/premier-service.service';
 import {
@@ -9,6 +14,8 @@ import {
   Router,
 } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ProductService } from './products/services/product.service';
+import { ProductModel } from './products/model/product.model';
 
 @Component({
   selector: 'app-root',
@@ -19,14 +26,16 @@ export class AppComponent {
   constructor(
     private premierService: PremierServiceService,
     private router: Router,
-    private ngxService: NgxUiLoaderService
+    private ngxService: NgxUiLoaderService,
+    private productService: ProductService,
+    public cdr: ChangeDetectorRef,
+    public appRef: ApplicationRef
   ) {
     this.premierService.sayHello();
-    this.router.events.subscribe((event) => {
+    /*     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         console.log('start loading');
         this.ngxService.start();
-        /*         this.loadding = true; */
       }
       if (
         event instanceof NavigationEnd ||
@@ -35,18 +44,20 @@ export class AppComponent {
       ) {
         console.log('end loading');
         this.ngxService.stop();
-        /*         this.loadding = false;
-         */
       }
-    });
+    }); */
+    /*     this.productService
+      .getProducts()
+      .subscribe((products: ProductModel[]) => console.table(products)); */
   }
   navigateWithNavigationExtras() {
+    /* this.cdr. */
     this.router.navigate(['/extra'], {
       state: {
         userId: 30,
-        name: 'aymen'
-      }
-    })
+        name: 'aymen',
+      },
+    });
   }
   title = 'Starting Advanced Topics';
 }

@@ -1,0 +1,12 @@
+<div #theDiv>
+  <p>out-of-bound-cdd-example works!</p>
+  {{message}}
+  <div class="alert alert-danger">
+    {{x}} : {{y}}
+  </div>
+  <pre>
+    Votre numéro porte bonheur est le {{juniorOrSenior}}
+  </pre>
+  tapez votre message ici ca declanchera le change detection <input type="text" [(ngModel)]="message">
+  <app-second></app-second>
+</div>

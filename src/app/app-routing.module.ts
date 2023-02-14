@@ -7,50 +7,24 @@ import { FrontComponent } from './templates/front/front.component';
 import { AdminComponent } from './templates/admin/admin.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NF404Component } from './components/nf404/nf404.component';
-import { AuthGuard } from './auth/guards/auth.guard';
-import { AddCvComponent } from './cv/add-cv/add-cv.component';
-import { CvComponent } from './cv/cv/cv.component';
-import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
 import { FirstComponent } from './components/first/first.component';
-import { MasterDetailCvComponent } from './cv/master-detail-cv/master-detail-cv.component';
-import { ListResolver } from './cv/resolvers/list.resolver';
-import { DetailsResolver } from './cv/resolvers/details.resolver';
 import { NavigationExtrasExampleComponent } from './navigation-extras-example/navigation-extras-example.component';
 import { CanLeaveTodoGuard } from './auth/can-leave-todo.guard';
+import { CanLoadCvGuard } from './auth/guard/can-load-cv.guard';
+import { CustomPreloadingStrategy } from './moduleLoader/custom-preloading-loader.strategy';
 
 const routes: Route[] = [
   /* cv */
   /*   { path: '', redirectTo: 'cv', pathMatch: 'full' }, */
   { path: 'first/:id', component: FirstComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'extra', component: NavigationExtrasExampleComponent },
   {
     path: 'cv',
-    component: CvComponent,
+    /*     canLoad: [CanLoadCvGuard],
+     */ loadChildren: () => import('./cv/cv.module').then((m) => m.CvModule),
+    data: { preload: true },
   },
-  {
-    path: 'cv/list',
-    component: MasterDetailCvComponent,
-    resolve: {
-      cvs: ListResolver,
-    },
-    children: [
-      {
-        path: ':id',
-        component: DetailsCvComponent,
-        resolve: { cv: DetailsResolver },
-        data: {
-          someData: { name: 'aymen' },
-        },
-      },
-    ],
-  },
-  { path: 'cv/add', component: AddCvComponent, canActivate: [AuthGuard] },
-  {
-    path: 'cv/:id',
-    component: DetailsCvComponent,
-    resolve: { cv: DetailsResolver },
-  },
+  { path: 'login', component: LoginComponent },
+  { path: 'extra', component: NavigationExtrasExampleComponent },
   {
     path: '',
     component: FrontComponent,
@@ -75,7 +49,14 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes /* , {enableTracing: true} */)],
+  imports: [
+    RouterModule.forRoot(
+      routes,
+      {
+        preloadingStrategy: CustomPreloadingStrategy,
+      } /* , {enableTracing: true} */
+    ),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
