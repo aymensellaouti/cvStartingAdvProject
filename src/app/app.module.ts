@@ -57,6 +57,7 @@ import { CdComponent } from './changeDetection/cd/cd.component';
 import { OutOfBoundCDdExampleComponent } from './changeDetection/out-of-bound-cdd-example/out-of-bound-cdd-example.component';
 import { CounterComponent } from './testComponent/counter/counter.component';
 import { Color2Component } from './testComponent/color2/color2.component';
+import { Auth2Component } from './testComponent/auth2/auth2.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,6 +100,7 @@ import { Color2Component } from './testComponent/color2/color2.component';
     OutOfBoundCDdExampleComponent,
     CounterComponent,
     Color2Component,
+    Auth2Component,
   ],
   imports: [
     BrowserModule,
