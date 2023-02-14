@@ -47,12 +47,12 @@ fdescribe('CounterComponent', () => {
   });
   it('should have to show -1 after click on decrement', () => {
     /*     const decrementBtn = el.query(By.css('[test-id=decrement-btn]'));*/
-    const decrementBtn = getElementByTestId(el, '[test-id=decrement-btn]');
+    const decrementBtn = getElementByTestId(el, 'decrement-btn');
     expect(decrementBtn).toBeTruthy();
     triggerEvent(decrementBtn, 'click');
     /* decrementBtn.triggerEventHandler('click', null); */
     /*     const counterP = el.query(By.css('[test-id =counter]')); */
-    const counterP = getElementByTestId(el, '[test-id =counter]');
+    const counterP = getElementByTestId(el, 'counter');
     fixture.detectChanges();
     expect(counterP.nativeElement.innerText).toBe('-1');
   });
