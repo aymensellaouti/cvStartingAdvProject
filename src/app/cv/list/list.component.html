@@ -1,5 +1,5 @@
-<ol class="list-group">
-  <li *ngFor="let cv of cvs; let isOdd = odd" [ngClass]="{
+<ol data-testid="list-cv" class="list-group">
+  <li data-testid="cv" *ngFor="let cv of cvs; let isOdd = odd" [ngClass]="{
       'list-group-item-primary': isOdd,
       'list-group-item-secondary': !isOdd
     }" class="list-group-item">

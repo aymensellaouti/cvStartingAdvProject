@@ -1,4 +1,4 @@
-<div class="card-container" *ngIf="cv">
+<div class="card-container" *ngIf="cv" data-testid="cv-card">
   <div class="card">
     <div class="front">
       <div class="cover">
@@ -9,7 +9,7 @@
       </div>
       <div class="content">
         <div class="main">
-          <h3 class="name">{{cv?.firstname}} {{cv?.name}}</h3>
+          <h3 class="name" data-testid="cv-card-name">{{cv?.firstname}} {{cv?.name}}</h3>
           <p class="profession">{{cv?.job}}</p>
           <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they
             love me everywhere"</p>
@@ -53,7 +53,9 @@
         <button (click)="embaucher()" class="m-1 btn btn-primary">
           embaucher
         </button>
-        <button [routerLink]="['/cv', cv.id]" class=" m-1 btn btn-dark">
+        <button
+          data-testid="cv-card-details-btn"
+          [routerLink]="['/cv', cv.id]" class=" m-1 btn btn-dark">
           détails
         </button>
       </div>
