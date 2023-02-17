@@ -16,6 +16,7 @@ import {
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ProductService } from './products/services/product.service';
 import { ProductModel } from './products/model/product.model';
+import { User } from './auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ import { ProductModel } from './products/model/product.model';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  user = new User(1, 'test');
   constructor(
     private premierService: PremierServiceService,
     private router: Router,
@@ -32,6 +34,11 @@ export class AppComponent {
     public appRef: ApplicationRef
   ) {
     this.premierService.sayHello();
+    /*     setInterval(() => {
+      console.log(this.user);
+
+      this.user.email += 'a';
+    }, 2500); */
     /*     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         console.log('start loading');
@@ -60,4 +67,8 @@ export class AppComponent {
     });
   }
   title = 'Starting Advanced Topics';
+
+  getRandom(): void {
+    console.log(Math.ceil(Math.random() * 3) + 1);
+  }
 }

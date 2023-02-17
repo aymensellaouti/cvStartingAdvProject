@@ -1,0 +1,16 @@
+<p>fork-join works!</p>
+
+<dialog #dialog>
+  To subscribe to our newsletter, please fill your email
+  <input type="text" class="form-control">
+  <button class="btn btn-primary">
+    Subscribe
+  </button>
+  <button class="btn btn-danger" (click)="dialog.close()">X</button>
+</dialog>
+<button class="btn btn-danger" (click)="dialog.showModal()">
+  Subscribe to the newsletter
+</button>
+<button class="btn btn-danger" (click)="dialog.show()">
+  Subscribe to the newsletter
+</button>

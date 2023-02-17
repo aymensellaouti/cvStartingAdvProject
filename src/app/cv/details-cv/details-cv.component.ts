@@ -27,6 +27,7 @@ export class DetailsCvComponent implements OnInit {
     });
     console.log('data snapshot', this.activatedRoute.snapshot.data);
 
+
     /*     this.activatedRoute.params.subscribe((params) => {
       this.cvService.getCvById(params['id']).subscribe({
         next: (cv) => {
