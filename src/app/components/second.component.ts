@@ -9,7 +9,7 @@ import {
 @Component({
   selector: 'app-second',
   template: `
-    <div class="alert alert-warning" (click)="sayCc()">{{ messageCd }}</div>
+    <div class="alert alert-warning">{{ messageCd }}</div>
     <input type="text" [(ngModel)]="message" />
     <button (click)="cdr.detectChanges()" class="btn btn-danger">DC</button>
     <button (click)="mfc()" class="btn btn-warning">MFC</button>
