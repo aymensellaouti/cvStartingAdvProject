@@ -29,8 +29,8 @@ export class SliderComponent {
   constructor() {
     this.images$ = timer(0, this.timer).pipe(
       tap((data) => console.log(data)),
-      throttleTime(1500),
-      tap((data) => console.log(data)),
+/*       throttleTime(1500),
+      tap((data) => console.log(data)), */
       map((i) => this.paths[i % this.paths.length]),
       take(3)
     );

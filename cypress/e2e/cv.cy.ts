@@ -6,8 +6,6 @@ describe('Cv List', () => {
 
     cy.visit('/cv');
     cy.contains('cvStartingAdvProject');
-    /* list-cv */
-
     const listJuniors = cy.get('[data-testid=list-cv]').first();
     listJuniors.should('have.length', 1);
     listJuniors.first().contains('Skander');

@@ -13,7 +13,7 @@ export class User {
   providedIn: 'root',
 })
 export class AuthService {
-  userSubject = new BehaviorSubject<User | null>(null);
+  private userSubject = new BehaviorSubject<User | null>(null);
   auth$ = this.userSubject.asObservable();
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;

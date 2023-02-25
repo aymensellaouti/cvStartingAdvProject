@@ -15,7 +15,12 @@ fdescribe('MathService', () => {
     const loggerSpy = jasmine.createSpyObj<LoggerService>('LoggerService', [
       'logger',
     ]);
-    /*     service = new MathService(loggerSpy); */
+    /*
+      const loggerSpy = jasmine.createSpyObj<LoggerService>('LoggerService', [
+          'logger',
+      ]);
+      service = new MathService(loggerSpy);
+      */
     logger = TestBed.inject(LoggerService);
     service = TestBed.inject(MathService);
     loggerSpyOn = spyOn(logger, 'logger');

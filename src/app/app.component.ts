@@ -15,7 +15,6 @@ import {
 } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ProductService } from './products/services/product.service';
-import { ProductModel } from './products/model/product.model';
 import { User } from './auth/services/auth.service';
 
 @Component({
@@ -39,7 +38,7 @@ export class AppComponent {
 
       this.user.email += 'a';
     }, 2500); */
-    /*     this.router.events.subscribe((event) => {
+        this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         console.log('start loading');
         this.ngxService.start();
@@ -52,7 +51,7 @@ export class AppComponent {
         console.log('end loading');
         this.ngxService.stop();
       }
-    }); */
+    });
     /*     this.productService
       .getProducts()
       .subscribe((products: ProductModel[]) => console.table(products)); */

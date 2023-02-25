@@ -36,15 +36,12 @@ export class RepeatDirective implements OnChanges {
   constructor(
     private template: TemplateRef<any>,
     private vcr: ViewContainerRef
-  ) {
-    console.log('appReapeat:', this.appRepeat);
-  }
+  ) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.vcr.clear();
     let borne = this.appRepeat <= this.maxVal ? this.appRepeat : this.maxVal;
     for (let i = 0; i < borne; i++) {
       let repeatContext = new RepeatContext(i, borne);
-      console.log(repeatContext);
       this.vcr.createEmbeddedView(this.template, repeatContext);
     }
   }
