@@ -7,5 +7,6 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
   show = false;
+  nb = 0;
   title = "Starting Advanced Topics";
 }

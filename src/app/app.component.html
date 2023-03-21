@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
 <hr>
 <p *appUnless="show">cc GTI</p>
+<input type="number" class="form-control" [(ngModel)]="nb">
+<p *appRepeat="nb">test ngRepeat</p>
 <button (click)="show = !show" class="btn btn-danger"> show / hide </button>
 <router-outlet></router-outlet>
 <hr>
