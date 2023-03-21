@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
 <hr>
 <p *appUnless="show">cc GTI</p>
+<app-test-pipe></app-test-pipe>
 <input type="number" class="form-control" [(ngModel)]="nb">
 <p *appRepeat="nb; let isOdd = isOdd let isEven = isEven" class="alert" [ngClass]="{
   'alert-primary': isOdd,

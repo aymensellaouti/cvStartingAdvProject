@@ -9,9 +9,6 @@ import { Cv } from "../model/cv";
 export class ListComponent {
   @Input() cvs: Cv[] | null = [];
   trackByFn(iteration: number, cv: Cv) {
-    console.log(cv);
-    console.log(iteration);
-
     return cv.id;
   }
   /*   @Output() forwardCv = new EventEmitter<Cv>(); */
