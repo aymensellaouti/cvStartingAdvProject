@@ -2,7 +2,10 @@
 <hr>
 <p *appUnless="show">cc GTI</p>
 <input type="number" class="form-control" [(ngModel)]="nb">
-<p *appRepeat="nb">test ngRepeat</p>
+<p *appRepeat="nb; let isOdd = isOdd let isEven = isEven" class="alert" [ngClass]="{
+  'alert-primary': isOdd,
+  'alert-secondary': isEven
+}">test ngRepeat</p>
 <button (click)="show = !show" class="btn btn-danger"> show / hide </button>
 <router-outlet></router-outlet>
 <hr>
