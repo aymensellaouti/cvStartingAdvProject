@@ -51,6 +51,10 @@ import { UtilsServiceToken } from "./tokens/utils-service.token";
 import { utilsServiceFactory } from "./factories/utils.factory";
 import { MathService } from "./services/math.service";
 import { mathServiceToken } from "./tokens/math-service.token";
+import { UtilsService } from "./services/utils.service";
+import { LOGGER_INJECTION_TOKEN } from "./tokens/logger.token";
+import { LoggerService } from "./services/logger.service";
+import { Logger2Service } from "./services/logger2.service";
 
 @NgModule({
   declarations: [
@@ -101,15 +105,24 @@ import { mathServiceToken } from "./tokens/math-service.token";
   ],
   providers: [
     AuthInterceptorProvider,
+    MathService,
+    UtilsService,
     {
-      provide: mathServiceToken,
-      useClass: MathService,
+      provide: LOGGER_INJECTION_TOKEN,
+      useClass: LoggerService,
+      multi: true,
     },
     {
-      provide: UtilsServiceToken,
-      useFactory: utilsServiceFactory,
+      provide: LOGGER_INJECTION_TOKEN,
+      useClass: Logger2Service,
+      multi: true,
+    },
+    /*     {
+      provide: UtilsService,
+      useClass: UtilsService,
       deps: [mathServiceToken],
     },
+ */
   ],
   bootstrap: [AppComponent],
 })

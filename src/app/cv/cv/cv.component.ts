@@ -1,13 +1,21 @@
-import { Component } from '@angular/core';
-import { Cv } from '../model/cv';
-import { LoggerService } from '../../services/logger.service';
-import { ToastrService } from 'ngx-toastr';
-import { CvService } from '../services/cv.service';
-import { EMPTY, Observable, catchError, of } from 'rxjs';
+import { Component } from "@angular/core";
+import { Cv } from "../model/cv";
+import { LoggerService } from "../../services/logger.service";
+import { ToastrService } from "ngx-toastr";
+import { CvService } from "../services/cv.service";
+import { EMPTY, Observable, catchError, of } from "rxjs";
+import { CONSTANTES } from "../../../config/const.config";
+import { FakeCvService } from "../services/fake-cv.service";
 @Component({
-  selector: 'app-cv',
-  templateUrl: './cv.component.html',
-  styleUrls: ['./cv.component.css'],
+  selector: "app-cv",
+  templateUrl: "./cv.component.html",
+  styleUrls: ["./cv.component.css"],
+  providers: [
+    {
+      provide: CvService,
+      useClass: CONSTANTES.fakeCvService ? FakeCvService : CvService,
+    },
+  ],
 })
 export class CvComponent {
   cvs$: Observable<Cv[]>;
@@ -21,14 +29,12 @@ export class CvComponent {
     private cvService: CvService
   ) {
     this.cvs$ = this.cvService.getCvs().pipe(
-      catchError(
-        (e) => {
-          this.toastr.error(`
+      catchError((e) => {
+        this.toastr.error(`
           Attention!! Les données sont fictives, problème avec le serveur.
-          Veuillez contacter l'admin.`)
-          return of(this.cvService.getFakeCvs());
-        }
-      )
+          Veuillez contacter l'admin.`);
+        return of(this.cvService.getFakeCvs());
+      })
     );
     /* this.cvService.getCvs().subscribe(
       {
@@ -41,8 +47,8 @@ export class CvComponent {
         }
       }
     ); */
-    this.logger.logger('je suis le cvComponent');
-    this.toastr.info('Bienvenu dans notre CvTech');
+    this.logger.logger("je suis le cvComponent");
+    this.toastr.info("Bienvenu dans notre CvTech");
     this.cvService.selectCv$.subscribe(() => this.nbClickItem++);
   }
 }

@@ -7,7 +7,7 @@ import { API } from "../../../config/api.config";
 @Injectable({
   providedIn: "root",
 })
-export class CvService {
+export class FakeCvService {
   private cvs: Cv[] = [];
   private selectCvSubject = new Subject<Cv>();
 
@@ -43,7 +43,7 @@ export class CvService {
    *
    */
   getCvs(): Observable<Cv[]> {
-    return this.http.get<Cv[]>(API.cv);
+    return of(this.cvs);
   }
 
   /**
