@@ -56,6 +56,9 @@ import { LOGGER_INJECTION_TOKEN } from "./tokens/logger.token";
 import { LoggerService } from "./services/logger.service";
 import { Logger2Service } from "./services/logger2.service";
 
+import { v4 as uuidv4 } from "uuid";
+import { UUIDToken } from "./tokens/uuid.token";
+import { ContainerComponent } from './components/container/container.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,6 +97,7 @@ import { Logger2Service } from "./services/logger2.service";
     RepeatDirective,
     TestPipeComponent,
     CalculFPipe,
+    ContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,11 +121,16 @@ import { Logger2Service } from "./services/logger2.service";
       useClass: Logger2Service,
       multi: true,
     },
+    {
+      provide: UUIDToken,
+      useValue: uuidv4,
+    },
     /*     {
       provide: UtilsService,
       useClass: UtilsService,
       deps: [mathServiceToken],
     },
+
  */
   ],
   bootstrap: [AppComponent],
