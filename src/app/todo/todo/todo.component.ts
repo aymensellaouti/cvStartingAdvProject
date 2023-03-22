@@ -1,6 +1,7 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, OnInit, inject } from "@angular/core";
 import { Todo } from "../model/todo";
 import { TodoService } from "../service/todo.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-todo",
@@ -8,12 +9,15 @@ import { TodoService } from "../service/todo.service";
   styleUrls: ["./todo.component.css"],
   providers: [TodoService],
 })
-export class TodoComponent {
+export class TodoComponent implements OnInit {
   todos: Todo[] = [];
-  private todoService: TodoService = Inject(TodoService);
-  todo = this.todoService.createTodo();
-  constructor() {
+  private todoService: TodoService = inject(TodoService);
+  todo!: Todo;
+  constructor(private title: Title) {}
+  ngOnInit(): void {
     this.todos = this.todoService.getTodos();
+    this.todo = this.todoService.createTodo();
+    this.title.setTitle("todo");
   }
   addTodo() {
     this.todoService.addTodo(this.todo);

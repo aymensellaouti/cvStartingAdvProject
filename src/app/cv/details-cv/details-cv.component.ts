@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Cv } from '../model/cv';
-import { CvService } from '../services/cv.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { APP_ROUTES } from '../../../config/routes.config';
-import { AuthService } from '../../auth/services/auth.service';
+import { Component, OnInit } from "@angular/core";
+import { Cv } from "../model/cv";
+import { CvService } from "../services/cv.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { APP_ROUTES } from "../../../config/routes.config";
+import { AuthService } from "../../auth/services/auth.service";
 
 @Component({
-  selector: 'app-details-cv',
-  templateUrl: './details-cv.component.html',
-  styleUrls: ['./details-cv.component.css'],
+  selector: "app-details-cv",
+  templateUrl: "./details-cv.component.html",
+  styleUrls: ["./details-cv.component.css"],
 })
 export class DetailsCvComponent implements OnInit {
   cv: Cv | null = null;
+  id = 0;
   constructor(
     private cvService: CvService,
     private router: Router,
@@ -20,9 +21,10 @@ export class DetailsCvComponent implements OnInit {
     private toastr: ToastrService,
     public authService: AuthService
   ) {}
-
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
+    this.activatedRoute.data.subscribe(({ cv }) => (this.cv = cv));
+    /*     this.id = this.activatedRoute.snapshot.params["id"]; */
+    /* this.activatedRoute.params.subscribe((params) => {
       this.cvService.getCvById(params['id']).subscribe({
         next: (cv) => {
           this.cv = cv;
@@ -31,8 +33,11 @@ export class DetailsCvComponent implements OnInit {
           this.router.navigate([APP_ROUTES.cv]);
         },
       });
-    });
+    }); */
   }
+  /*   next() {
+    this.router.navigate(["cv", +this.id + 1]);
+  } */
   deleteCv(cv: Cv) {
     this.cvService.deleteCvById(cv.id).subscribe({
       next: () => {

@@ -59,6 +59,7 @@ import { Logger2Service } from "./services/logger2.service";
 import { v4 as uuidv4 } from "uuid";
 import { UUIDToken } from "./tokens/uuid.token";
 import { ContainerComponent } from './components/container/container.component';
+import { MasterDetailsComponent } from './cv/master-details/master-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +99,7 @@ import { ContainerComponent } from './components/container/container.component';
     TestPipeComponent,
     CalculFPipe,
     ContainerComponent,
+    MasterDetailsComponent,
   ],
   imports: [
     BrowserModule,

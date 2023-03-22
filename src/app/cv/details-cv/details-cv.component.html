@@ -10,8 +10,7 @@
         <div class="row">
           <div class="col-md-12">
             <h4 class="m-t-2">
-              <span class="fa fa-clock-o ion-clock pull-xs-right"></span>
-              Informations
+              <span class="fa fa-clock-o ion-clock pull-xs-right"></span> Informations
             </h4>
             <table class="table table-hover table-striped">
               <tbody>
@@ -33,9 +32,9 @@
               </tbody>
             </table>
             <div class="d-flex justify-content-center">
-              <button *ngIf="authService.isAuthenticated()" (click)="deleteCv(cv)" class="btn btn-danger">
-                Delete
+              <button *ngIf="authService.isAuthenticated()" (click)="deleteCv(cv)" class="btn btn-danger"> Delete
               </button>
+              <!-- <button class="btn btn-dark" (click)="next()">Next</button> -->
             </div>
           </div>
         </div>
