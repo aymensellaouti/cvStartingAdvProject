@@ -42,6 +42,9 @@ const routes: Route[] = [
             resolve: {
               cv: CvDetailResolver,
             },
+            data: {
+              withDivInTitle: true,
+            },
           },
         ],
       },
@@ -75,9 +78,11 @@ const routes: Route[] = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {
+    RouterModule.forRoot(
+      routes /* , {
       enableTracing: true,
-    }),
+    } */
+    ),
   ],
   exports: [RouterModule],
 })

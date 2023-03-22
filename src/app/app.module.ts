@@ -61,6 +61,7 @@ import { UUIDToken } from "./tokens/uuid.token";
 import { ContainerComponent } from "./components/container/container.component";
 import { MasterDetailsComponent } from "./cv/master-details/master-details.component";
 import { NgxUiLoaderModule } from "ngx-ui-loader";
+import { SliderComponent } from './components/slider/slider.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +102,7 @@ import { NgxUiLoaderModule } from "ngx-ui-loader";
     CalculFPipe,
     ContainerComponent,
     MasterDetailsComponent,
+    SliderComponent,
   ],
   imports: [
     BrowserModule,

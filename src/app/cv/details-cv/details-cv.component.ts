@@ -14,6 +14,7 @@ import { AuthService } from "../../auth/services/auth.service";
 export class DetailsCvComponent implements OnInit {
   cv: Cv | null = null;
   id = 0;
+  withDiv = false;
   constructor(
     private cvService: CvService,
     private router: Router,
@@ -23,6 +24,9 @@ export class DetailsCvComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ cv }) => (this.cv = cv));
+    this.withDiv = !!this.activatedRoute.snapshot.data["withDivInTitle"];
+    console.log(this.withDiv);
+
     /*     this.id = this.activatedRoute.snapshot.params["id"]; */
     /* this.activatedRoute.params.subscribe((params) => {
       this.cvService.getCvById(params['id']).subscribe({
