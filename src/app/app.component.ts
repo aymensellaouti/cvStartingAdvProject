@@ -15,7 +15,6 @@ export class AppComponent {
     @Inject(LOGGER_INJECTION_TOKEN) private loggers: LoggerService[]
   ) {
     this.loggers.forEach((logger) => logger.logger("cc"));
-
     console.log(this.utilsService.somme(3, 4));
   }
   show = false;
