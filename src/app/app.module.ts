@@ -58,8 +58,9 @@ import { Logger2Service } from "./services/logger2.service";
 
 import { v4 as uuidv4 } from "uuid";
 import { UUIDToken } from "./tokens/uuid.token";
-import { ContainerComponent } from './components/container/container.component';
-import { MasterDetailsComponent } from './cv/master-details/master-details.component';
+import { ContainerComponent } from "./components/container/container.component";
+import { MasterDetailsComponent } from "./cv/master-details/master-details.component";
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,6 +109,7 @@ import { MasterDetailsComponent } from './cv/master-details/master-details.compo
     ToastrModule.forRoot(), // ToastrModule added
     AppRoutingModule,
     HttpClientModule,
+    NgxUiLoaderModule,
   ],
   providers: [
     AuthInterceptorProvider,
