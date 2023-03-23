@@ -19,9 +19,9 @@ export class AuthService {
       map((user) => !!user && this.isAuthenticated())
     );
     this.isLoggedOut$ = this.user$.pipe(map((user) => !user));
-    const user = JSON.parse(localStorage.getItem("user") ?? "");
+    let user = localStorage.getItem("user");
     if (user) {
-      this.userSubject.next(user);
+      this.userSubject.next(JSON.parse(user));
     }
   }
   login(credentials: CredentialsDto): Observable<LoginResponseDto> {
