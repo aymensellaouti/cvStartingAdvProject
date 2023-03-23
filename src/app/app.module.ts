@@ -62,6 +62,7 @@ import { ContainerComponent } from "./components/container/container.component";
 import { MasterDetailsComponent } from "./cv/master-details/master-details.component";
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { SliderComponent } from './components/slider/slider.component';
+import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,6 +104,7 @@ import { SliderComponent } from './components/slider/slider.component';
     ContainerComponent,
     MasterDetailsComponent,
     SliderComponent,
+    AutocompleteComponent,
   ],
   imports: [
     BrowserModule,

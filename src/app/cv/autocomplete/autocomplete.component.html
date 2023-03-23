@@ -1,0 +1,6 @@
+<input type="text" class="form-control" #autocomplete [(ngModel)]="search">
+<ol class="list-group">
+  <li *ngFor="let cv of (cvs$ | async)" class="list-group-item">
+    <app-item [cv]="cv"></app-item>
+  </li>
+</ol>
