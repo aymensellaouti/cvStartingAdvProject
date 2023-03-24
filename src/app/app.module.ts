@@ -22,7 +22,6 @@ import { DetailsCvComponent } from "./cv/details-cv/details-cv.component";
 import { NgstyleComponent } from "./directives/ngstyle/ngstyle.component";
 import { MiniWordComponent } from "./directives/mini-word/mini-word.component";
 import { NgclassComponent } from "./directives/ngclass/ngclass.component";
-import { TodoComponent } from "./todo/todo/todo.component";
 
 import { HighlightDirective } from "./directives/highlight.directive";
 import { RainbowDirective } from "./directives/rainbow.directive";
@@ -61,8 +60,9 @@ import { UUIDToken } from "./tokens/uuid.token";
 import { ContainerComponent } from "./components/container/container.component";
 import { MasterDetailsComponent } from "./cv/master-details/master-details.component";
 import { NgxUiLoaderModule } from "ngx-ui-loader";
-import { SliderComponent } from './components/slider/slider.component';
-import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
+import { SliderComponent } from "./components/slider/slider.component";
+import { AutocompleteComponent } from "./cv/autocomplete/autocomplete.component";
+import { TodoModule } from "./todo/todo.module";
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +88,6 @@ import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component'
     HighlightDirective,
     RainbowDirective,
     Btc2usdPipe,
-    TodoComponent,
     NavbarComponent,
     FrontComponent,
     AdminComponent,
@@ -114,6 +113,7 @@ import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component'
     AppRoutingModule,
     HttpClientModule,
     NgxUiLoaderModule,
+    TodoModule,
   ],
   providers: [
     AuthInterceptorProvider,

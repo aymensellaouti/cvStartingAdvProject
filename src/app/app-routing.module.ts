@@ -60,10 +60,7 @@ const routes: Route[] = [
   {
     path: "",
     component: FrontComponent,
-    children: [
-      { path: "todo", component: TodoComponent },
-      { path: "word", component: MiniWordComponent },
-    ],
+    children: [{ path: "word", component: MiniWordComponent }],
   },
   {
     path: "admin",
@@ -73,7 +70,7 @@ const routes: Route[] = [
     ],
   },
   /*   { path: ':quelqueChose', component: SecondComponent }, */
-  { path: "**", component: NF404Component },
+  /*   { path: "**", component: NF404Component }, */
 ];
 
 @NgModule({

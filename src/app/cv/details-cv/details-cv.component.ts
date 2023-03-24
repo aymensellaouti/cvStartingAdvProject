@@ -51,7 +51,7 @@ export class DetailsCvComponent implements OnInit {
     this.router.navigate(["cv", +this.id + 1]);
   } */
   deleteCv(cv: Cv) {
-    this.cvService.deleteCvById(cv.id).subscribe({
+    const subscription = this.cvService.deleteCvById(cv.id).subscribe({
       next: () => {
         this.toastr.success(`${cv.name} supprimé avec succès`);
         this.router.navigate([APP_ROUTES.cv]);
