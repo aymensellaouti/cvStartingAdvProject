@@ -89,7 +89,6 @@ import { CvModule } from "./cv/cv.module";
     AppRoutingModule,
     HttpClientModule,
     NgxUiLoaderModule,
-    CvModule,
   ],
   providers: [
     AuthInterceptorProvider,

@@ -13,41 +13,36 @@ import { MessageResolver } from "./resolvers/message.resolver";
   imports: [
     RouterModule.forChild([
       {
-        path: "cv",
+        path: "",
+        component: CvComponent,
+        resolve: {
+          cvs: CvListResolver,
+          message: MessageResolver,
+        },
+      },
+      { path: "add", component: AddCvComponent, canActivate: [AuthGuard] },
+      {
+        path: "list",
+        component: MasterDetailsComponent,
         children: [
-          {
-            path: "",
-            component: CvComponent,
-            resolve: {
-              cvs: CvListResolver,
-              message: MessageResolver,
-            },
-          },
-          { path: "add", component: AddCvComponent, canActivate: [AuthGuard] },
-          {
-            path: "list",
-            component: MasterDetailsComponent,
-            children: [
-              {
-                path: ":id",
-                component: DetailsCvComponent,
-                resolve: {
-                  cv: CvDetailResolver,
-                },
-                data: {
-                  withDivInTitle: true,
-                },
-              },
-            ],
-          },
           {
             path: ":id",
             component: DetailsCvComponent,
             resolve: {
               cv: CvDetailResolver,
             },
+            data: {
+              withDivInTitle: true,
+            },
           },
         ],
+      },
+      {
+        path: ":id",
+        component: DetailsCvComponent,
+        resolve: {
+          cv: CvDetailResolver,
+        },
       },
     ]),
   ],

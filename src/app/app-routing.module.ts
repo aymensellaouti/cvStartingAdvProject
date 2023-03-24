@@ -6,6 +6,7 @@ import { FrontComponent } from "./templates/front/front.component";
 import { AdminComponent } from "./templates/admin/admin.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { NF404Component } from "./components/nf404/nf404.component";
+import { CanLoadCvGuard } from "./cv/guards/can-load-cv.guard";
 
 const routes: Route[] = [
   /* cv */
@@ -14,6 +15,11 @@ const routes: Route[] = [
   {
     path: "todo",
     loadChildren: () => import("./todo/todo.module").then((m) => m.TodoModule),
+  },
+  {
+    path: "cv",
+    canLoad: [CanLoadCvGuard],
+    loadChildren: () => import("./cv/cv.module").then((m) => m.CvModule),
   },
   {
     path: "",
@@ -28,7 +34,7 @@ const routes: Route[] = [
     ],
   },
   /*   { path: ':quelqueChose', component: SecondComponent }, */
-  /*   { path: "**", component: NF404Component }, */
+  { path: "**", component: NF404Component },
 ];
 
 @NgModule({
