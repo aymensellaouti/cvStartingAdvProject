@@ -55,10 +55,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "forecia:build:production"
+              "browserTarget": "GTI:build:production"
             },
             "development": {
-              "browserTarget": "forecia:build:development"
+              "browserTarget": "GTI:build:development"
             }
           },
           "defaultConfiguration": "development"
