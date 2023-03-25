@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { ApplicationRef, Component, Inject } from "@angular/core";
 import { UtilsService } from "./services/utils.service";
 import { UtilsServiceToken } from "./tokens/utils-service.token";
 import { LOGGER_INJECTION_TOKEN } from "./tokens/logger.token";
@@ -11,13 +11,19 @@ import {
   NavigationStart,
   Router,
 } from "@angular/router";
+import { User } from "./auth/model/user.model";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
+  user = new User(2, "new email");
+  show = false;
+  nb = 0;
+  title = "Starting Advanced Topics";
   constructor(
+    public aR: ApplicationRef,
     private utilsService: UtilsService,
     @Inject(LOGGER_INJECTION_TOKEN) private loggers: LoggerService[],
     private ngxService: NgxUiLoaderService,
@@ -35,7 +41,11 @@ export class AppComponent {
       }
     }); */
   }
-  show = false;
-  nb = 0;
-  title = "Starting Advanced Topics";
+
+  updateUser(newEmail: string) {
+    this.user = {
+      ...this.user,
+      email: newEmail,
+    };
+  }
 }

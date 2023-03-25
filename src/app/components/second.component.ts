@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { User } from "../auth/model/user.model";
 
 @Component({
-  selector: 'app-second',
+  selector: "app-second",
   template: `
-    <p>
-      second works!
-    </p>
+    <p>second works! {{ i }}</p>
+    <div class="alert alert-danger">{{ user | json }}</div>
   `,
-  styles: [
-  ]
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SecondComponent {
-
+  @Input() user: User;
+  i = 0;
+  constructor() {
+    setInterval(() => this.i++, 1000);
+    this.user = new User(2, "fake@gmail.com");
+  }
 }
