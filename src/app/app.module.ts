@@ -50,6 +50,7 @@ import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { SliderComponent } from "./components/slider/slider.component";
 import { TodoModule } from "./todo/todo.module";
 import { CvModule } from "./cv/cv.module";
+import { ColorUtComponent } from "./components/color-ut/color-ut.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +81,7 @@ import { CvModule } from "./cv/cv.module";
     CalculFPipe,
     ContainerComponent,
     SliderComponent,
+    ColorUtComponent,
   ],
   imports: [
     BrowserModule,

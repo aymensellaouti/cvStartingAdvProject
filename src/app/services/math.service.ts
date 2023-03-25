@@ -1,4 +1,9 @@
 import { LoggerService } from "./logger.service";
+import { Injectable } from "@angular/core";
+
+@Injectable({
+  providedIn: "root",
+})
 export class MathService {
   constructor(private logger: LoggerService) {}
   /**
