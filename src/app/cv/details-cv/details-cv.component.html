@@ -1,4 +1,5 @@
 <!-- {{cv$ | async | json}}  -->
+<app-autocomplete></app-autocomplete>
 <div class="d-flex justify-content-center" *ngIf="cv">
   <div class="col-lg-8 push-lg-4">
     <div class="tab-content p-b-3">
@@ -18,10 +19,10 @@
             <table class="table table-hover table-striped">
               <tbody>
                 <tr>
-                  <td><strong>Name</strong> {{ cv?.name }}</td>
+                  <td datacy=cvName><strong>Name</strong> {{ cv?.name }}</td>
                 </tr>
                 <tr>
-                  <td><strong>Firstname</strong> {{ cv?.firstname }}</td>
+                  <td datacy=cvFirstname><strong>Firstname</strong> {{ cv?.firstname }}</td>
                 </tr>
                 <tr>
                   <td><strong>Job</strong> {{ cv?.job }}</td>

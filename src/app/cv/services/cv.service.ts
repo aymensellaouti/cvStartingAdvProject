@@ -117,6 +117,7 @@ export class CvService {
       "filter",
       `{"where":{"name":{"like":"%${name}%"}}}`
     );
-    return this.http.get<Cv[]>(API.cv, { params });
+    if (name) return this.http.get<Cv[]>(API.cv, { params });
+    return of([]);
   }
 }

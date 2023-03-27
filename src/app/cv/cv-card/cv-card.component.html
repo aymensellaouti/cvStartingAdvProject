@@ -9,7 +9,7 @@
       </div>
       <div class="content">
         <div class="main">
-          <h3 class="name">{{cv?.firstname}} {{cv?.name}}</h3>
+          <h3 class="name" datacy=cvCardName>{{cv?.firstname}} {{cv?.name}}</h3>
           <p class="profession">{{cv?.job}}</p>
           <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love
             me everywhere"</p>
@@ -45,7 +45,7 @@
       </div>
       <div class="footer">
         <button (click)="embaucher()" class="m-1 btn btn-primary"> embaucher </button>
-        <button [routerLink]="['/cv', cv.id]" class=" m-1 btn btn-dark"> détails </button>
+        <button datacy=cvCardDetailsBtn [routerLink]="['/cv', cv.id]" class=" m-1 btn btn-dark"> détails </button>
       </div>
     </div>
   </div>

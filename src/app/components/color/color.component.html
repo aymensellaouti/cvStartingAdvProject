@@ -1,9 +1,3 @@
-<div [style.backgroundColor]="divColor">
-  Color
-</div>
-
-<input #inputColor (change)="changeColor(inputColor.value)" type="text" class="form-control">
-
-<button (click)="changeColor(defaultColor)" class="btn btn-warning">
-  reset
-</button>
+<div data-testid="div-color" [style.backgroundColor]="divColor"> Color </div>
+<input data-testid="input-color" #inputColor (change)="changeColor(inputColor.value)" type="text" class="form-control">
+<button data-testid="reset-color" (click)="changeColor(defaultColor)" class="btn btn-warning"> reset </button>
