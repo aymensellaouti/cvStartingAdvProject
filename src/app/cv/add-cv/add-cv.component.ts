@@ -1,15 +1,18 @@
 import { Component, inject } from "@angular/core";
 import { Cv } from "../model/cv";
 import { CvService } from "../services/cv.service";
-import { tap } from "rxjs";
+import { tap, filter } from "rxjs";
 import { Router } from "@angular/router";
 import { CvAsyncValidators } from "../../validators/unique-cin.validator";
 import { cinFirstCarsValidator } from "../../validators/cin-first-cars.validators";
+import { FormGroup } from "@angular/forms";
 import {
   FormBuilder,
   FormControl,
   Validators,
   AbstractControl,
+  AbstractControlOptions,
+  FormArray,
 } from "@angular/forms";
 
 @Component({
@@ -62,11 +65,13 @@ export class AddCvComponent {
           updateOn: "blur",
         },
       ],
+      skills: this.formBuilder.array([]),
+      hobbies: this.formBuilder.array([]),
     },
     {
       validators: [cinFirstCarsValidator],
       updateOn: "blur",
-    }
+    } as AbstractControlOptions
   );
   constructor(
     private formBuilder: FormBuilder,
@@ -87,6 +92,7 @@ export class AddCvComponent {
         tap((cv) => {
           console.log(cv);
           this.router.navigate(["cv"]);
+          localStorage.removeItem("AddCvForm");
         })
       )
       .subscribe();
@@ -94,13 +100,22 @@ export class AddCvComponent {
   ngOnInit() {
     const ageInput = this.form.controls["age"];
     const pathInput = this.form.controls["path"];
+    this.form.valueChanges
+      .pipe(filter(() => this.form.valid))
+      .subscribe((value) => {
+        localStorage.setItem("AddCvForm", JSON.stringify(value));
+      });
     ageInput.valueChanges.subscribe((value) => {
-      if (ageInput.value && ageInput.value < 18) {
+      if (value && value < 18) {
         pathInput.disable({ emitEvent: false });
       } else if (pathInput.disabled) {
         pathInput.enable({ emitEvent: false });
       }
     });
+    const formContent = localStorage.getItem("AddCvForm");
+    if (formContent) {
+      this.form.setValue(JSON.parse(formContent));
+    }
   }
 
   get name(): AbstractControl {
@@ -120,5 +135,31 @@ export class AddCvComponent {
   }
   get cin(): AbstractControl {
     return this.form.get("cin")!;
+  }
+  get skills(): FormArray {
+    return this.form.get("skills")! as FormArray;
+  }
+  get hobbies(): FormArray {
+    return this.form.get("hobbies")! as FormArray;
+  }
+  addSkill() {
+    /* this.skills.controls; */
+    const skillForm: FormGroup = this.formBuilder.group({
+      skill: ["", [Validators.required]],
+      level: ["", [Validators.required]],
+    });
+    this.skills.push(skillForm);
+  }
+  deleteSkill(i: number) {
+    this.skills.removeAt(i);
+  }
+  addHobby() {
+    /* this.skills.controls; */
+    const hobbyControl: FormControl = new FormControl("hobby");
+    this.hobbies.push(hobbyControl);
+  }
+
+  deleteHobby(i: number) {
+    this.hobbies.removeAt(i);
   }
 }

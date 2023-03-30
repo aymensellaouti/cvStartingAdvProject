@@ -32,6 +32,32 @@
   </div>
   Job: <input type="text" class="form-control" formControlName="job" /> Path:
   <input type="text" class="form-control" formControlName="path" />
+  <div class="alert alert-primary">
+    <div>Skills: <span (click)="addSkill()">+</span></div>
+    <ng-container formArrayName="skills">
+      <ng-container
+        *ngFor="let skillForm of skills.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="alert alert-secondary">
+          <input type="text" formControlName="skill" class="form-control" />
+          <input type="text" formControlName="level" class="form-control" />
+          <button class="btn btn-danger" (click)="deleteSkill(i)">x</button>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div class="alert alert-danger">
+    <div>Hobbies: <span (click)="addHobby()">+</span></div>
+    <ng-container formArrayName="hobbies">
+      <ng-container
+        *ngFor="let hobbyControl of hobbies.controls; let i = index"
+      >
+        <input type="text" [formControlName]="i" class="form-control" />
+        <button class="btn btn-danger" (click)="deleteHobby(i)">x</button>
+      </ng-container>
+    </ng-container>
+  </div>
   <button [disabled]="form.invalid" class="btn btn-primary" (click)="addCv()">
     add cv
   </button>
