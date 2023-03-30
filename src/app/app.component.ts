@@ -3,28 +3,29 @@ import {
   ChangeDetectorRef,
   Component,
   Inject,
-} from '@angular/core';
-import { PREMIER_SERVICE_TOKEN } from './injectionTokens/premier-service.token';
-import { PremierServiceService } from './services/premier-service.service';
+} from "@angular/core";
+import { PREMIER_SERVICE_TOKEN } from "./injectionTokens/premier-service.token";
+import { PremierServiceService } from "./services/premier-service.service";
 import {
   NavigationCancel,
   NavigationEnd,
   NavigationError,
   NavigationStart,
   Router,
-} from '@angular/router';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ProductService } from './products/services/product.service';
-import { User } from './auth/services/auth.service';
+} from "@angular/router";
+import { NgxUiLoaderService } from "ngx-ui-loader";
+import { ProductService } from "./products/services/product.service";
+import { User } from "./auth/services/auth.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  user = new User(1, 'test');
+  user = new User(1, "test");
   constructor(
+    @Inject(PREMIER_SERVICE_TOKEN) private ps: PremierServiceService,
     private premierService: PremierServiceService,
     private router: Router,
     private ngxService: NgxUiLoaderService,
@@ -32,15 +33,17 @@ export class AppComponent {
     public cdr: ChangeDetectorRef,
     public appRef: ApplicationRef
   ) {
+    console.log(this.ps.sayHello());
+
     this.premierService.sayHello();
     /*     setInterval(() => {
       console.log(this.user);
 
       this.user.email += 'a';
     }, 2500); */
-        this.router.events.subscribe((event) => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        console.log('start loading');
+        console.log("start loading");
         this.ngxService.start();
       }
       if (
@@ -48,7 +51,7 @@ export class AppComponent {
         event instanceof NavigationCancel ||
         event instanceof NavigationError
       ) {
-        console.log('end loading');
+        console.log("end loading");
         this.ngxService.stop();
       }
     });
@@ -58,14 +61,14 @@ export class AppComponent {
   }
   navigateWithNavigationExtras() {
     /* this.cdr. */
-    this.router.navigate(['/extra'], {
+    this.router.navigate(["/extra"], {
       state: {
         userId: 30,
-        name: 'aymen',
+        name: "aymen",
       },
     });
   }
-  title = 'Starting Advanced Topics';
+  title = "Starting Advanced Topics";
 
   getRandom(): void {
     console.log(Math.ceil(Math.random() * 3) + 1);
