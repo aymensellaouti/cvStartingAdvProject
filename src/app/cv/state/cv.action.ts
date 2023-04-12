@@ -21,7 +21,7 @@ export const fromCvAction = createActionGroup({
 export const fromCvDetailsAction = createActionGroup({
   source: "Cv Details Component",
   events: {
-    "load Cv": emptyProps(),
+    "load Cv": props<{ id: number }>(),
     "Cv loaded success": props<{ cv: Cv }>(),
     "Cv loaded fail": props<{ error: Error }>(),
   },
@@ -29,8 +29,8 @@ export const fromCvDetailsAction = createActionGroup({
 export const fromCvDeleteAction = createActionGroup({
   source: "Cv Details Component",
   events: {
-    "load Cv": emptyProps(),
-    "Cv loaded success": props<{ cv: Cv }>(),
-    "Cv loaded fail": props<{ error: Error }>(),
+    "Delete Cv": props<{ id: number }>(),
+    "Cv Deleted success": props<{ id: number }>(),
+    "Cv Deleted fail": props<{ error: Error }>(),
   },
 });

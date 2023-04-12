@@ -16,6 +16,7 @@ import { Store, select } from "@ngrx/store";
 import { fromCvAction } from "../state/cv.action";
 import { AppState } from "src/app/state";
 import { selectAllCvs, selectLoadingError } from "../state/cv.selector";
+import { cvAdapter } from "../state/cv.reducers";
 
 @Component({
   selector: "app-cv",
@@ -44,6 +45,7 @@ export class CvComponent {
         this.toastr.error(error ?? "");
       })
     );
+
     this.cvs$ = this.store.pipe(
       select(selectAllCvs),
       catchError((e) => {
