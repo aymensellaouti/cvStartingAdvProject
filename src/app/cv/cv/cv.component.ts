@@ -1,15 +1,29 @@
-import { Component } from '@angular/core';
-import { Cv } from '../model/cv';
-import { LoggerService } from '../../services/logger.service';
-import { ToastrService } from 'ngx-toastr';
-import { CvService } from '../services/cv.service';
-import { EMPTY, Observable, catchError, of, tap, map, shareReplay } from 'rxjs';
+import { Component } from "@angular/core";
+import { Cv } from "../model/cv";
+import { LoggerService } from "../../services/logger.service";
+import { ToastrService } from "ngx-toastr";
+import { CvService } from "../services/cv.service";
+import {
+  filter,
+  Observable,
+  catchError,
+  of,
+  tap,
+  map,
+  shareReplay,
+} from "rxjs";
+import { Store, select } from "@ngrx/store";
+import { fromCvAction } from "../state/cv.action";
+import { AppState } from "src/app/state";
+import { selectAllCvs, selectLoadingError } from "../state/cv.selector";
+
 @Component({
-  selector: 'app-cv',
-  templateUrl: './cv.component.html',
-  styleUrls: ['./cv.component.css'],
+  selector: "app-cv",
+  templateUrl: "./cv.component.html",
+  styleUrls: ["./cv.component.css"],
 })
 export class CvComponent {
+  error$: Observable<string | null>;
   cvs$: Observable<Cv[]>;
   junios$: Observable<Cv[]>;
   seniors$: Observable<Cv[]>;
@@ -20,13 +34,23 @@ export class CvComponent {
   constructor(
     private logger: LoggerService,
     private toastr: ToastrService,
-    private cvService: CvService
+    private cvService: CvService,
+    private store: Store<AppState>
   ) {
-    this.cvs$ = this.cvService.getCvs().pipe(
+    store.dispatch(fromCvAction.loadCvs());
+    this.error$ = this.store.pipe(select(selectLoadingError)).pipe(
+      filter((error) => !!error),
+      tap((error) => {
+        this.toastr.error(error ?? "");
+      })
+    );
+    this.cvs$ = this.store.pipe(
+      select(selectAllCvs),
       catchError((e) => {
         this.toastr.error(`
           Attention!! Les données sont fictives, problème avec le serveur.
-          Veuillez contacter l'admin.`);
+          Veuillez contacter l'admin.
+        `);
         return of(this.cvService.getFakeCvs());
       }),
       shareReplay()
@@ -48,8 +72,8 @@ export class CvComponent {
         }
       }
     ); */
-    this.logger.logger('je suis le cvComponent');
-    this.toastr.info('Bienvenu dans notre CvTech');
+    this.logger.logger("je suis le cvComponent");
+    this.toastr.info("Bienvenu dans notre CvTech");
     this.cvService.selectCv$.subscribe(() => this.nbClickItem++);
   }
 }

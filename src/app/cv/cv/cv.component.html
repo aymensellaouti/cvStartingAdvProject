@@ -1,34 +1,65 @@
 <app-autocomplete></app-autocomplete>
+<ng-container *ngIf="!(error$ | async)">
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-warning">
+        {{ date | date : "full" | uppercase }}
 
-<div class="row">
-  <div class="col">
-    <div class="alert alert-warning">
-      {{date | date:'full' | uppercase}}
-
-      <p>Nombre de cvs sélectionnés : {{nbClickItem}}</p>
-      <!--       <pre>
+        <p>Nombre de cvs sélectionnés : {{ nbClickItem }}</p>
+        <!--       <pre>
         {{1 | btc2usd}} / {{1 | btc2usd: false}} /
       </pre> -->
+      </div>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button
+            class="nav-link active"
+            id="nav-home-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-home"
+            type="button"
+            role="tab"
+            aria-controls="nav-home"
+            aria-selected="true"
+          >
+            Home
+          </button>
+          <button
+            class="nav-link"
+            id="nav-profile-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-profile"
+            type="button"
+            role="tab"
+            aria-controls="nav-profile"
+            aria-selected="false"
+          >
+            Profile
+          </button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div
+          class="tab-pane fade show active"
+          id="nav-home"
+          role="tabpanel"
+          aria-labelledby="nav-home-tab"
+        >
+          <app-list [cvs]="junios$ | async"></app-list>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="nav-profile"
+          role="tabpanel"
+          aria-labelledby="nav-profile-tab"
+        >
+          <app-list [cvs]="seniors$ | async"></app-list>
+        </div>
+      </div>
     </div>
-    <nav>
-      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
-          role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
-          role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-      </div>
-    </nav>
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <app-list [cvs]="junios$ | async"></app-list>
-      </div>
-      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-        <app-list [cvs]="seniors$ | async"></app-list>
-      </div>
+    <div class="col">
+      <app-cv-card></app-cv-card>
     </div>
   </div>
-  <div class="col">
-    <app-cv-card></app-cv-card>
-  </div>
-</div>
+</ng-container>
 <app-embauche></app-embauche>

@@ -15,6 +15,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CvRoutingModule } from "./cv-routing.module";
 
 import { MatStepperModule } from "@angular/material/stepper";
+import { StoreModule } from "@ngrx/store";
+import { cvReducer } from "./state/cv.reducers";
+import { EffectsModule } from "@ngrx/effects";
+import { CvEffect } from "./state/cv.effect";
 @NgModule({
   declarations: [
     AddCvComponent,
@@ -34,6 +38,8 @@ import { MatStepperModule } from "@angular/material/stepper";
     FormsModule,
     ReactiveFormsModule,
     MatStepperModule,
+    StoreModule.forFeature("cv", cvReducer),
+    EffectsModule.forFeature([CvEffect]),
   ],
   exports: [],
 })

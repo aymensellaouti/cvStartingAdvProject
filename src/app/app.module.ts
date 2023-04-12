@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, isDevMode } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -64,6 +64,11 @@ import { ManualCdComponent } from "./changeDetection/manual-cd/manual-cd.compone
 import { premierServiceProviderFactory } from "./provider-factories/premier-service.provider-factory";
 import { LoggerService } from "./services/logger.service";
 import { PREMIER_SERVICE_TOKEN } from "./injectionTokens/premier-service.token";
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { rootReducer } from "./state/index";
+import { EffectsModule } from "@ngrx/effects";
+import { RouterState, StoreRouterConnectingModule } from "@ngrx/router-store";
 @NgModule({
   declarations: [
     AppComponent,
@@ -122,6 +127,13 @@ import { PREMIER_SERVICE_TOKEN } from "./injectionTokens/premier-service.token";
 
     ToastrModule.forRoot(), // ToastrModule added
     NgxUiLoaderModule,
+    StoreModule.forRoot({ root: rootReducer }, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: "router",
+      routerState: RouterState.Minimal,
+    }),
   ],
   providers: [
     AuthInterceptorProvider,

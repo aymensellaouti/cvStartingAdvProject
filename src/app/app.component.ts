@@ -14,8 +14,9 @@ import {
   Router,
 } from "@angular/router";
 import { NgxUiLoaderService } from "ngx-ui-loader";
-import { ProductService } from "./products/services/product.service";
 import { User } from "./auth/services/auth.service";
+import { Store } from "@ngrx/store";
+import { initStoreAction } from "./state";
 
 @Component({
   selector: "app-root",
@@ -25,22 +26,13 @@ import { User } from "./auth/services/auth.service";
 export class AppComponent {
   user = new User(1, "test");
   constructor(
-    @Inject(PREMIER_SERVICE_TOKEN) private ps: PremierServiceService,
-    private premierService: PremierServiceService,
     private router: Router,
     private ngxService: NgxUiLoaderService,
-    private productService: ProductService,
     public cdr: ChangeDetectorRef,
-    public appRef: ApplicationRef
+    public appRef: ApplicationRef,
+    private store: Store
   ) {
-    console.log(this.ps.sayHello());
-
-    this.premierService.sayHello();
-    /*     setInterval(() => {
-      console.log(this.user);
-
-      this.user.email += 'a';
-    }, 2500); */
+    store.dispatch(initStoreAction());
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         console.log("start loading");
@@ -55,12 +47,8 @@ export class AppComponent {
         this.ngxService.stop();
       }
     });
-    /*     this.productService
-      .getProducts()
-      .subscribe((products: ProductModel[]) => console.table(products)); */
   }
   navigateWithNavigationExtras() {
-    /* this.cdr. */
     this.router.navigate(["/extra"], {
       state: {
         userId: 30,
