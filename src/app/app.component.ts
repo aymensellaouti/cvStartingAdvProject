@@ -35,7 +35,6 @@ export class AppComponent {
     store.dispatch(initStoreAction());
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        console.log("start loading");
         this.ngxService.start();
       }
       if (
@@ -43,7 +42,6 @@ export class AppComponent {
         event instanceof NavigationCancel ||
         event instanceof NavigationError
       ) {
-        console.log("end loading");
         this.ngxService.stop();
       }
     });

@@ -68,7 +68,12 @@ import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { rootReducer } from "./state/index";
 import { EffectsModule } from "@ngrx/effects";
-import { RouterState, StoreRouterConnectingModule } from "@ngrx/router-store";
+import {
+  RouterState,
+  StoreRouterConnectingModule,
+  routerReducer,
+} from "@ngrx/router-store";
+import { CustomSerializer } from "./state/custom-router-serializer";
 @NgModule({
   declarations: [
     AppComponent,
@@ -127,12 +132,13 @@ import { RouterState, StoreRouterConnectingModule } from "@ngrx/router-store";
 
     ToastrModule.forRoot(), // ToastrModule added
     NgxUiLoaderModule,
-    StoreModule.forRoot({ root: rootReducer }, {}),
+    StoreModule.forRoot({ root: rootReducer, router: routerReducer }, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({
       stateKey: "router",
       routerState: RouterState.Minimal,
+      /* serializer: CustomSerializer, */
     }),
   ],
   providers: [
